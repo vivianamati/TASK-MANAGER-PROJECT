@@ -1,0 +1,93 @@
+<!-- base.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}My Website{% endblock %}</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+
+    <style>
+        /* Optional: Custom styles can be added here */
+    </style>
+</head>
+<body>
+
+<header>
+    <!-- <div class="text-right">  -->
+        <!-- <div class="sm:px-6 lg:px-8"> -->
+            <nav class="bg-blue-800 p-3 w-full">
+                <div class="container mx-auto">
+                    <ul class="flex justify-end space-x-4 text-white">
+                        <li>
+                            <a href="{% url 'signup' %}" class="hover:bg-gray-700 hover:text-white rounded px-4 py-2 transition duration-300">Sign Up</a>
+                        </li>
+                        <li>
+                            <a href="{% url 'login' %}" class="hover:bg-gray-700 hover:text-white rounded px-4 py-2 transition duration-300">Login</a>
+                        </li>
+                        <li>
+                            <a href="{% url 'category_list' %}" class="hover:bg-gray-700 hover:text-white rounded px-4 py-2 transition duration-300">Categories</a>
+                        </li>
+                        <!-- Add more navigation links as needed -->
+                    </ul>
+                </div>
+            </nav>
+        </div>
+        
+            
+            
+    </div>
+</header>
+
+<main class="py-12">
+    {% block content %}
+    {% endblock %}
+</main>
+
+<!-- <footer class="bg-gray-800 py-4 text-center">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <p>&copy; 2024 My Website. All rights reserved.</p> -->
+    <!-- </div> -->
+    <footer class="bg-blue-800 text-white">
+        <div class="container mx-auto flex flex-wrap py-8 px-4">
+            <!-- Copyright -->
+            <div class="w-full md:w-1/4 mb-4">
+                <p class="text-lg">&copy; 2024 TaskSphere. All rights reserved.</p>
+            </div>
+    
+            <!-- Address -->
+            <div class="w-full md:w-1/4 mb-4">
+                <h3 class="text-lg mb-2">Address</h3>
+                <p>TaskSphere HQ</p>
+                <p>3214-00300 Rally Road</p>
+            </div>
+    
+            <!-- Contact -->
+            <div class="w-full md:w-1/4 mb-4">
+                <h3 class="text-lg mb-2">Contact</h3>
+                <div>
+                    <h3 class="inline-block mr-2">Phone 1:</h3><p class="inline-block">0718763467</p>
+                </div>
+                <div>
+                    <h3 class="inline-block mr-2">Phone 2:</h3><p class="inline-block">0712349877</p>
+                </div>
+                <div>
+                    <h3 class="inline-block mr-2">Email:</h3><p class="inline-block">tasksphere@yahoo.com</p>
+                </div>
+            </div>
+    
+            <!-- Locations -->
+            <div class="w-full md:w-1/4 mb-4">
+                <h3 class="text-lg mb-2">Locations</h3>
+                <p>Woodlands</p>
+                <p>Whitesands</p>
+                <p>Stanleys</p>
+                <p>Pan-Afric</p>
+            </div>
+        </div>
+    </footer>
+    
+</body>
+</html>

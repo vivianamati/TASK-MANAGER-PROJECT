@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task List</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Consistent font */
+            background-color: #f0f4f7; /* Light background */
+            margin: 0; /* Remove default margin */
+            padding: 0; /* Remove default padding */
+            display: flex; /* Use flexbox */
+            flex-direction: column; /* Stack elements vertically */
+            align-items: center; /* Center items horizontally */
+        }
+
+        nav {
+            background-color: #007bff; /* Blue background color */
+            padding: 10px; /* Padding around the nav */
+            width: 100%; /* Make sure nav covers full width */
+            box-sizing: border-box; /* Include padding in width calculation */
+        }
+
+        nav .nav-container {
+            display: flex; /* Use flexbox for layout */
+            justify-content: space-between; /* Space between the logo and the links */
+            align-items: center; /* Center items vertically */
+        }
+
+        nav .app-name {
+            color: #ffffff; /* White text color */
+            font-size: 20px; /* Font size */
+            font-weight: bold; /* Make the app name bold */
+        }
+
+        nav .nav-links {
+            display: flex; /* Use flexbox for link layout */
+        }
+
+        nav a {
+            text-decoration: none; /* Remove underline */
+            color: #ffffff; /* White link color for contrast */
+            font-size: 16px; /* Font size */
+            margin-left: 20px; /* Space between items */
+        }
+
+        nav a:hover {
+            text-decoration: underline; /* Underline on hover */
+        }
+
+        .container {
+            max-width: 800px; /* Maximum width for content */
+            margin-top: 20px; /* Space below navbar */
+            background-color: #ffffff; /* White background for content */
+            padding: 20px; /* Padding inside the container */
+            border-radius: 8px; /* Rounded corners */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+        }
+
+        h1 {
+            color: #3490dc; /* Blue color for heading */
+            text-align: center; /* Center the heading */
+            margin-bottom: 20px; /* Space below heading */
+            font-size: 2.5rem; /* Font size for heading */
+        }
+
+        ul {
+            list-style-type: none; /* Remove default list styling */
+            padding: 0; /* Remove default padding */
+        }
+
+        li {
+            background-color: #ffffff; /* White background for list items */
+            border-radius: 8px; /* Rounded corners */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Shadow effect */
+            padding: 15px; /* Padding inside list items */
+            margin-bottom: 15px; /* Space below list items */
+            display: flex; /* Flexbox for layout */
+            justify-content: space-between; /* Space between elements */
+            align-items: center; /* Center items vertically */
+            transition: transform 0.2s ease-in-out; /* Smooth hover effect */
+        }
+
+        li:hover {
+            transform: translateY(-5px); /* Raise item on hover */
+        }
+
+        .task-info {
+            flex: 1; /* Allow task info to expand */
+            padding-right: 20px; /* Space to the right */
+        }
+
+        .task-title {
+            font-size: 1.2rem; /* Font size for task title */
+            font-weight: bold; /* Bold font for task title */
+            color: #333333; /* Dark color for text */
+            margin-bottom: 5px; /* Space below task title */
+        }
+
+        .task-actions {
+            display: flex; /* Flexbox for action buttons */
+            align-items: center; /* Center items vertically */
+        }
+
+        .task-actions a {
+            text-decoration: none; /* Remove underline */
+            padding: 8px 12px; /* Padding inside buttons */
+            border-radius: 4px; /* Rounded corners */
+            font-size: 0.9rem; /* Font size for buttons */
+            font-weight: bold; /* Bold font */
+            color: #ffffff; /* White text */
+            transition: background-color 0.3s ease-in-out; /* Smooth background color change */
+        }
+
+        .task-actions a:hover {
+            background-color: #3490dc; /* Blue background on hover */
+        }
+
+        .delete-btn {
+            background-color: #e53e3e; /* Red background for delete button */
+            margin-left: 10px; /* Space between buttons */
+        }
+
+        .delete-btn:hover {
+            background-color: #c53030; /* Darker red on hover */
+        }
+
+        .add-task-btn,
+        .logout-btn {
+            display: inline-block; /* Inline block display */
+            margin-top: 20px; /* Space above buttons */
+            padding: 10px 20px; /* Padding inside buttons */
+            background-color: #3490dc; /* Blue background */
+            color: #ffffff; /* White text */
+            text-decoration: none; /* Remove underline */
+            border-radius: 4px; /* Rounded corners */
+            font-weight: bold; /* Bold font */
+            transition: background-color 0.3s ease-in-out; /* Smooth background color change */
+        }
+
+        .add-task-btn:hover,
+        .logout-btn:hover {
+            background-color: #2779bd; /* Darker blue on hover */
+        }
+
+        .form-container {
+            margin-bottom: 20px; /* Space below form */
+        }
+
+        .form-container input,
+        .form-container select {
+            padding: 8px; /* Padding inside input fields */
+            margin-right: 10px; /* Space to the right */
+            border: 1px solid #ccc; /* Light border */
+            border-radius: 4px; /* Rounded corners */
+        }
+
+        .form-container button {
+            padding: 8px 12px; /* Padding inside buttons */
+            border: none; /* No border */
+            background-color: #3490dc; /* Blue background */
+            color: #ffffff; /* White text */
+            border-radius: 4px; /* Rounded corners */
+            cursor: pointer; /* Pointer cursor */
+            font-weight: bold; /* Bold font */
+        }
+
+        .form-container button:hover {
+            background-color: #2779bd; /* Darker blue on hover */
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <span class="app-name">TaskSphere</span> <!-- App name on the left -->
+            <div class="nav-links"> <!-- Wrapper for navigation links -->
+                <a href="{% url 'signup' %}">Sign Up</a>
+                <a href="{% url 'login' %}">Login</a>
+                <a href="{% url 'category_list' %}">Categories</a>
+            </div>
+        </div>
+    </nav>
+    
+    <div class="container">
+        <h1>Welcome, {{ user.username }}!</h1>
+        {% csrf_token %}
+        <div class="form-container">
+            <form method="get" action="{% url 'task_list' %}">
+                <input type="text" name="query" placeholder="Search tasks..." value="{{ query }}">
+                <select name="priority">
+                    <option value="">Select priority</option>
+                    <option value="high" {% if priority == 'high' %}selected{% endif %}>High</option>
+                    <option value="medium" {% if priority == 'medium' %}selected{% endif %}>Medium</option>
+                    <option value="low" {% if priority == 'low' %}selected{% endif %}>Low</option>
+                </select>
+                <select name="status"> <!-- Added status filter -->
+                    <option value="">Select status</option>
+                    <option value="pending" {% if status == 'pending' %}selected{% endif %}>Pending</option>
+                    <option value="in_progress" {% if status == 'in_progress' %}selected{% endif %}>In Progress</option>
+                    <option value="completed" {% if status == 'completed' %}selected{% endif %}>Completed</option>
+                </select>
+                <input type="date" name="start_date" placeholder="Start date" value="{{ start_date }}">
+                <button type="submit">Filter</button>
+<button><a href="{% url 'task_list' %}" style="display: inline-block; padding: 1px 5px; background-color: #3490dc; color: white; text-decoration: none; border-radius: 4px; font-weight: bold; transition: background-color 0.3s ease-in-out;" class="reset-link">Reset</a>
+</button> <!-- Reset button -->
+            </form>
+            
+        </div>
+        <ul>
+            {% for task in tasks %}
+                <li>
+                    <div class="task-info">
+                        <div class="task-title">{{ task.title }}</div>
+                        <div>{{ task.description }}</div>
+                        {% if task.priority %}
+                            <div><strong>Priority</strong>: {{ task.get_priority_display }}</div>
+                        {% else %}
+                            <div><strong>Priority</strong>: No</div>
+                        {% endif %}
+                        <div><strong>Due Date</strong>: {{ task.due_date|date:"Y-m-d" }}</div>
+                        <div><strong>Status</strong>: {{ task.get_status_display }}</div>
+                    </div>
+                    <div class="task-actions">
+                        <a href="{% url 'task_update' task.pk %}">Edit</a>
+                        <a href="{% url 'task_delete' task.pk %}" class="delete-btn">Delete</a>
+                    </div>
+                </li>
+            {% empty %}
+                <li>No tasks available.</li>
+            {% endfor %}
+        </ul>
+        <a href="{% url 'task_create' %}" class="add-task-btn">Add Task</a>
+    </div>
+</body>
+</html>

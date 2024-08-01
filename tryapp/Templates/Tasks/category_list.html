@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Categories</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f4f7;
+            margin: 0;
+            padding: 0;
+        }
+        
+        /* Navigation styles */
+        nav {
+    background-color: #007bff; /* Blue background color */
+    padding: 10px; /* Padding around the nav */
+    width: 100%; /* Make sure nav covers full width */
+    box-sizing: border-box; /* Include padding in width calculation */
+}
+
+/* Style the container div */
+nav .nav-container {
+    display: flex; /* Use flexbox for layout */
+    justify-content: space-between; /* Space between the logo and the links */
+    align-items: center; /* Center items vertically */
+}
+
+/* Style the app name */
+nav .app-name {
+    color: #ffffff; /* White text color */
+    font-size: 20px; /* Font size */
+    font-weight: bold; /* Make the app name bold */
+}
+
+/* Style the links wrapper */
+nav .nav-links {
+    display: flex; /* Use flexbox for link layout */
+}
+
+/* Style the links */
+nav a {
+    text-decoration: none; /* Remove underline */
+    color: #ffffff; /* White link color for contrast */
+    font-size: 16px; /* Font size */
+    margin-left: 20px; /* Space between items */
+}
+
+/* Change link color on hover */
+nav a:hover {
+    text-decoration: underline; /* Underline on hover */
+}
+
+
+
+
+        /* Main container styles */
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: none; /* Removed box shadow */
+        }
+
+        h1 {
+            color: #3490dc;
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 2.5rem;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            background-color: #ffffff; /* Changed to white background */
+            border: 1px solid #ccc; /* Added border instead of box shadow */
+            border-radius: 4px; /* Slightly rounded corners */
+            padding: 15px;
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .form-container {
+            margin-top: 30px;
+        }
+
+        .form-container h2 {
+            font-size: 1.5rem;
+            color: #333333;
+            margin-bottom: 15px;
+        }
+
+        label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 16px;
+            transition: border-color 0.3s ease; /* Smooth transition */
+        }
+
+        input[type="text"]:focus {
+            border-color: #3490dc; /* Change border color on focus */
+            outline: none; /* Remove outline */
+        }
+
+        button[type="submit"] {
+            background-color: #3490dc;
+            color: #ffffff;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        /* Responsive styles */
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            .container {
+                padding: 15px;
+            }
+
+            button[type="submit"], input[type="text"] {
+                font-size: 14px;
+            }
+
+            .nav-container {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .nav-links {
+                flex-direction: column;
+                margin-top: 10px;
+            }
+
+            .nav-links li {
+                margin-left: 0;
+                margin-bottom: 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <span class="app-name">TaskSphere</span> <!-- App name on the left -->
+            <div class="nav-links"> <!-- Wrapper for navigation links -->
+                <a href="{% url 'signup' %}">Sign Up</a>
+                <a href="{% url 'login' %}">Login</a>
+                <a href="{% url 'category_list' %}">Categories</a>
+            </div>
+        </div>
+    </nav>
+    
+    <div class="container">
+        <h1>Categories</h1>
+        <ul>
+        {% for category in categories %}
+            <li>{{ category.name }}</li>
+        {% empty %}
+            <li>No categories available.</li>
+        {% endfor %}
+        </ul>
+
+        <div class="form-container">
+            <h2>Add New Category</h2>
+            <form method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit">Add Category</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

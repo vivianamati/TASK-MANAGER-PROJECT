@@ -1,0 +1,141 @@
+<!-- templates/home.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+<h1 class="text-blue-700 font-serif text-7xl text-center">TaskSphere</h1>
+<br>
+<!-- <section class="bg-blue-500 text-white py-12">
+    <div class="container mx-auto text-center">
+        <h1 class="text-5xl font-bold mb-4">Welcome to TaskSphere</h1>
+        <p class="text-lg">A brief description of your project.</p>
+    </div>
+</section> -->
+
+<section class="bg-blue-500 py-12 relative">
+    <!-- Wavy SVG background -->
+    <div class="absolute inset-0 overflow-hidden">
+        <svg class="absolute bottom-0 left-0 transform scale-x-[-1] -z-10" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+            <path fill="#3490dc" fill-opacity="1" d="M0,32L48,48C96,64,192,96,288,133.3C384,171,480,213,576,208C672,203,768,149,864,138.7C960,128,1056,160,1152,181.3C1248,203,1344,213,1392,218.7L1440,224L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+        </svg>
+    </div>
+
+    <!-- Content -->
+    <div class="container mx-auto text-center relative z-10">
+        <h1 class="text-5xl font-bold text-white mb-4">Welcome to TaskSphere</h1>
+        
+        <p class="text-3xl text-white font-serif">
+            Organize,Prioritize,Succeed
+        </p>
+    </div>
+</section>
+<div class="flex flex-wrap justify-center">
+    <div class="max-w-sm rounded overflow-hidden shadow-lg bg-white mx-2 my-2">
+        <div class="px-6 py-4">
+            <span class="font-bold text-xl">Create Tasks</span>
+            <p class="text-gray-700 text-base">Easily add tasks you need to complete.</p>
+        </div>
+    </div>
+
+    <div class="max-w-sm rounded overflow-hidden shadow-lg bg-white mx-2 my-2">
+        <div class="px-6 py-4">
+            <span class="font-bold text-xl">Set Priorities</span>
+            <p class="text-gray-700 text-base">Assign priorities to tasks to focus on what's most important.</p>
+        </div>
+    </div>
+
+    <div class="max-w-sm rounded overflow-hidden shadow-lg bg-white mx-2 my-2">
+        <div class="px-6 py-4">
+            <span class="font-bold text-xl">Set Due Dates</span>
+            <p class="text-gray-700 text-base">Schedule deadlines for tasks to keep track of timelines.</p>
+        </div>
+    </div>
+
+    <div class="max-w-sm rounded overflow-hidden shadow-lg bg-white mx-2 my-2">
+        <div class="px-6 py-4">
+            <span class="font-bold text-xl">Organize Tasks</span>
+            <p class="text-gray-700 text-base">Categorize tasks into different projects or categories.</p>
+        </div>
+    </div>
+
+    <div class="max-w-sm rounded overflow-hidden shadow-lg bg-white mx-2 my-2">
+        <div class="px-6 py-4">
+            <span class="font-bold text-xl">Notes</span>
+            <p class="text-gray-700 text-base">Attach additional information or details to tasks.</p>
+        </div>
+    </div>
+
+    <div class="max-w-sm rounded overflow-hidden shadow-lg bg-white mx-2 my-2">
+        <div class="px-6 py-4">
+            <span class="font-bold text-xl">Time Management</span>
+            <p class="text-gray-700 text-base">Allocate specific time slots or estimates for completing tasks.</p>
+        </div>
+    </div>
+
+    <div class="max-w-sm rounded overflow-hidden shadow-lg bg-white mx-2 my-2">
+        <div class="px-6 py-4">
+            <span class="font-bold text-xl">Checklist</span>
+            <p class="text-gray-700 text-base">Create checklists within tasks for step-by-step completion.</p>
+        </div>
+    </div>
+
+    <div class="max-w-sm rounded overflow-hidden shadow-lg bg-white mx-2 my-2">
+        <div class="px-6 py-4">
+            <span class="font-bold text-xl">Recurring Tasks</span>
+            <p class="text-gray-700 text-base">Schedule tasks that repeat daily, weekly, monthly, etc.</p>
+        </div>
+    </div>
+
+    <div class="max-w-sm rounded overflow-hidden shadow-lg bg-white mx-2 my-2">
+        <div class="px-6 py-4">
+            <span class="font-bold text-xl">Collaboration</span>
+            <p class="text-gray-700 text-base">Share tasks or projects with others for collaborative work.</p>
+        </div>
+    </div>
+
+    <div class="max-w-sm rounded overflow-hidden shadow-lg bg-white mx-2 my-2">
+        <div class="px-6 py-4">
+            <span class="font-bold text-xl">Progress Tracking</span>
+            <p class="text-gray-700 text-base">Monitor progress on tasks to stay on track.</p>
+        </div>
+    </div>
+
+    <div class="max-w-sm rounded overflow-hidden shadow-lg bg-white mx-2 my-2">
+        <div class="px-6 py-4">
+            <span class="font-bold text-xl">Filter and Search</span>
+            <p class="text-gray-700 text-base">Easily find tasks using filters or search functionality.</p>
+        </div>
+    </div>
+</div>
+
+<div class="flex flex-wrap justify-center">
+    <!-- Call-to-action cards -->
+    
+
+    <div class="max-w-xs rounded overflow-hidden shadow-lg bg-white mx-2 my-2">
+        <div class="px-6 py-4">
+            <div class="font-bold text-xl mb-2">Start your journey here with TaskSphere</div>
+            <p class="text-gray-700 text-base">TaskSphere helps you manage tasks efficiently.</p>
+        </div>
+        <div class="px-6 py-4">
+            <a href="{% url 'signup' %}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full focus:outline-none focus:shadow-outline">
+                Signup
+            </a>
+        </div>
+    </div>
+
+    <div class="max-w-xs rounded overflow-hidden shadow-lg bg-white mx-2 my-2">
+        <div class="px-6 py-4">
+            <div class="font-bold text-xl mb-2">Wait! Already have an account?</div>
+            <p class="text-gray-700 text-base">We are happy you are back! Continue your journey with us.</p>
+        </div>
+        <div class="px-6 py-4">
+            <a href="{% url 'login' %}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full focus:outline-none focus:shadow-outline">
+                Login
+            </a>
+            
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

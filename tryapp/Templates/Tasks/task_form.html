@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %}</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif; /* Changed font to Arial for consistency */
+            background-color: #f3f4f6; /* Light gray background */
+            margin: 0; /* Remove default margin */
+            padding: 0; /* Remove default padding */
+            display: flex; /* Enable Flexbox */
+            flex-direction: column; /* Align items in a column */
+            align-items: center; /* Center items horizontally */
+            height: 100vh; /* Full viewport height */
+        }
+
+        nav {
+            background-color: #3490dc; /* Blue background for navbar */
+            padding: 10px 20px; /* Padding around the navbar */
+            width: 100%;
+            position: relative; /* Ensure the navbar is positioned properly */
+            top: 0; /* Position it at the very top */
+            left: 0; /* Align it to the left */
+            z-index: 1000; /* Keep it on top */
+        }
+
+        .nav-container {
+            max-width: 1200px; /* Limit the width of the container */
+            margin: 0 auto; /* Center the nav container */
+            display: flex; /* Use flexbox for layout */
+            justify-content: space-between; /* Space between brand and links */
+            align-items: center; /* Center items vertically */
+        }
+
+        .nav-links {
+            list-style: none; /* Remove bullet points */
+            display: flex; /* Use flexbox for links */
+            gap: 20px; /* Space between nav links */
+            margin: 0; /* Remove default margin */
+            padding: 0; /* Remove default padding */
+        }
+
+        .nav-links a {
+            color: #ffffff; /* White text for links */
+            text-decoration: none; /* Remove underline from links */
+            padding: 10px 15px; /* Padding inside each link */
+            border-radius: 4px; /* Rounded corners for links */
+            transition: background-color 0.3s; /* Smooth background color change */
+        }
+
+        .nav-links a:hover {
+            background-color: #2779bd; /* Darker blue on hover */
+        }
+
+        h1 {
+            color: #3490dc; /* Blue color for heading */
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 2.5rem; /* Font size for the heading */
+        }
+
+        form {
+            max-width: 600px; /* Maximum width of the form */
+            margin: 0 auto; /* Center the form */
+            background-color: #ffffff; /* White background for the form */
+            padding: 30px; /* Padding inside the form */
+            border-radius: 8px; /* Rounded corners for the form */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+            text-align: left; /* Align text to the left */
+        }
+
+        label {
+            font-weight: bold; /* Bold labels */
+            display: block; /* Block display for labels */
+            margin-bottom: 10px; /* Space below labels */
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="password"],
+        textarea,
+        select {
+            width: 100%; /* Full width inputs */
+            padding: 10px; /* Padding inside inputs */
+            margin-bottom: 15px; /* Space below inputs */
+            border: 1px solid #ccc; /* Border for inputs */
+            border-radius: 4px; /* Rounded corners for inputs */
+            box-sizing: border-box; /* Box sizing to include padding in width */
+            font-size: 16px; /* Font size for inputs */
+        }
+
+        button[type="submit"] {
+            background-color: #3490dc; /* Blue button background */
+            color: #ffffff; /* White button text */
+            border: none; /* No border for button */
+            padding: 12px 20px; /* Padding inside button */
+            border-radius: 4px; /* Rounded corners for button */
+            cursor: pointer; /* Pointer cursor on hover */
+            font-size: 16px; /* Font size for button */
+            transition: background-color 0.3s ease-in-out; /* Smooth background color change */
+        }
+
+        button[type="submit"]:hover {
+            background-color: #2779bd; /* Darker blue on hover */
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <h2 style="color: white; margin: 0;">TaskSphere</h2> <!-- Brand name -->
+            <ul class="nav-links">
+                <li><a href="{% url 'signup' %}">Sign Up</a></li>
+                <li><a href="{% url 'login' %}">Login</a></li>
+                <li><a href="{% url 'category_list' %}">Categories</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <h1>{% block heading %}{% endblock %}</h1>
+    <form method="post">
+        {% csrf_token %}
+        
+        {{ form.as_p }} <!-- Render the form -->
+        
+        <button type="submit">Save</button>
+    </form>
+</body>
+</html>

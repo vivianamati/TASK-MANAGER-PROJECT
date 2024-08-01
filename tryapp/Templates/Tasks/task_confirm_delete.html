@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirm Delete</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+        }
+        nav {
+            background-color: #007bff; /* Blue background color */
+            padding: 10px; /* Padding around the nav */
+            width: 100%; /* Make sure nav covers full width */
+            box-sizing: border-box; /* Include padding in width calculation */
+            position: absolute; /* Position the nav at the top */
+            top: 0;
+            left: 0;
+            z-index: 10; /* Keep the nav on top of other elements */
+        }
+        nav .nav-container {
+            display: flex; /* Use flexbox for layout */
+            justify-content: space-between; /* Space between the logo and the links */
+            align-items: center; /* Center items vertically */
+            max-width: 1200px; /* Maximum width for the nav */
+            margin: 0 auto; /* Center the nav */
+        }
+        nav .app-name {
+            color: #ffffff; /* White text color */
+            font-size: 20px; /* Font size */
+            font-weight: bold; /* Make the app name bold */
+        }
+        nav .nav-links {
+            display: flex; /* Use flexbox for link layout */
+        }
+        nav a {
+            text-decoration: none; /* Remove underline */
+            color: #ffffff; /* White link color for contrast */
+            font-size: 16px; /* Font size */
+            margin-left: 20px; /* Space between items */
+            transition: color 0.3s ease; /* Smooth color transition */
+        }
+        nav a:hover {
+            text-decoration: underline; /* Underline on hover */
+        }
+        .container {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); /* Softer shadow for depth */
+            padding: 40px;
+            width: 350px; /* Slightly wider for better spacing */
+            margin-top: 100px; /* Margin to avoid overlap with nav */
+        }
+        h1 {
+            color: #e74c3c; /* Red color for the delete confirmation */
+            font-size: 26px; /* Slightly larger font size */
+            margin-bottom: 20px;
+        }
+        p {
+            font-size: 1.1em;
+            margin: 20px 0;
+            line-height: 1.6; /* Increased line height for readability */
+        }
+        form {
+            margin: 20px 0;
+        }
+        button {
+            background-color: #e74c3c; /* Red button */
+            color: white;
+            border: none;
+            padding: 14px 22px; /* Increased padding for better touch */
+            font-size: 1.1em; /* Slightly larger font size */
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            width: 100%; /* Full width button */
+            margin-top: 10px; /* Margin for spacing */
+        }
+        button:hover {
+            background-color: #c0392b; /* Darker red on hover */
+            transform: translateY(-2px);
+        }
+        a {
+            text-decoration: none;
+            color: #3498db; /* Blue color for cancel link */
+            font-size: 1em;
+            display: inline-block;
+            margin-top: 10px;
+            transition: color 0.3s ease;
+        }
+        a:hover {
+            color: #2980b9; /* Darker blue on hover */
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <div class="nav-container">
+            <span class="app-name">TaskSphere</span> <!-- App name on the left -->
+            <div class="nav-links"> <!-- Wrapper for navigation links -->
+                <a href="{% url 'signup' %}">Sign Up</a>
+                <a href="{% url 'login' %}">Login</a>
+                <a href="{% url 'category_list' %}">Categories</a>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        <h1>Confirm Delete</h1>
+        <p>Are you sure you want to delete "{{ task.title }}"?</p>
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit">Confirm</button>
+        </form>
+        <a href="{% url 'task_list' %}">Cancel</a>
+    </div>
+</body>
+</html>

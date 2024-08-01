@@ -1,0 +1,38 @@
+<!-- task_update.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Task</title>
+    <!-- Include any CSS or stylesheets you need -->
+</head>
+<body>
+    <div class="container">
+        <h1>Update Task</h1>
+        <nav class="bg-blue-800 p-3 w-full">
+            <div class="container mx-auto">
+                <ul class="flex justify-end space-x-4 text-white">
+                    <li>
+                        <a href="{% url 'signup' %}" class="hover:bg-gray-700 hover:text-white rounded px-4 py-2 transition duration-300">Sign Up</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'login' %}" class="hover:bg-gray-700 hover:text-white rounded px-4 py-2 transition duration-300">Login</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'category_list' %}" class="hover:bg-gray-700 hover:text-white rounded px-4 py-2 transition duration-300">Categories</a>
+                    </li>
+                    <!-- Add more navigation links as needed -->
+                </ul>
+            </div>
+        </nav>
+        <form method="POST">
+            
+            {{ form.as_p }}
+            <button type="submit">Update Task</button>
+        </form>
+        <a href="{% url 'task_list' %}">Back to Task List</a>
+    </div>
+</body>
+</html>
